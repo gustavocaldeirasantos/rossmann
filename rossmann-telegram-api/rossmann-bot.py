@@ -6,22 +6,24 @@ import pandas as pd
 from flask import Flask, request, Response
 
 # constants
-TOKEN = '944200092:AAHrHbZ1Q_LaJkVG6SZs6Em3qf6GdL5r-II'
+# O token é lido de uma variável de ambiente para não expor o segredo no código.
+# Defina antes de rodar:  export TELEGRAM_TOKEN="seu_token_aqui"
+TOKEN = os.environ.get( 'TELEGRAM_TOKEN', '' )
 
 ## Info about the Bot
-#https://api.telegram.org/bot944200092:AAHrHbZ1Q_LaJkVG6SZs6Em3qf6GdL5r-II/getMe
+#https://api.telegram.org/bot<TELEGRAM_TOKEN>/getMe
 #
 ## get updates
-#https://api.telegram.org/bot944200092:AAHrHbZ1Q_LaJkVG6SZs6Em3qf6GdL5r-II/getUpdates
+#https://api.telegram.org/bot<TELEGRAM_TOKEN>/getUpdates
 
 ## Webhook
-#https://api.telegram.org/bot944200092:AAHrHbZ1Q_LaJkVG6SZs6Em3qf6GdL5r-II/setWebhook?url=https://meigarom-c4hh.localhost.run
+#https://api.telegram.org/bot<TELEGRAM_TOKEN>/setWebhook?url=https://meigarom-c4hh.localhost.run
 
 ## Webhook Heroku
-#https://api.telegram.org/bot944200092:AAHrHbZ1Q_LaJkVG6SZs6Em3qf6GdL5r-II/setWebhook?url=https://rossmann-bot.herokuapp.com
+#https://api.telegram.org/bot<TELEGRAM_TOKEN>/setWebhook?url=https://rossmann-bot.herokuapp.com
 #
 ## send message
-#https://api.telegram.org/bot944200092:AAHrHbZ1Q_LaJkVG6SZs6Em3qf6GdL5r-II/sendMessage?chat_id=449124440&text=Hi Meigarom, I am doing good, tks!
+#https://api.telegram.org/bot<TELEGRAM_TOKEN>/sendMessage?chat_id=449124440&text=Hi Meigarom, I am doing good, tks!
 #
 def send_message( chat_id, text ):
     url = 'https://api.telegram.org/bot{}/'.format( TOKEN ) 
